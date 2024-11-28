@@ -6,9 +6,13 @@ const defaultRestaurants = [
 		name: 'Суши ВОК',
 		cuisine: 'Японская',
 		rating: 4.8,
-		description: 'Лучшие суши города!',
+		shortDescription: 'Лучшие суши города!',
+		fullDescription:
+			'Суши BOK предлагает широкий ассортимент суши, роллов и других традиционных японских блюд. Мы используем только свежие ингредиенты для достижения максимального вкуса.',
 		image:
 			'https://images.unsplash.com/photo-1553621042-f6e147245754?w=800&q=80',
+		address: 'ул. Чайковского, 30, Грозный',
+		contact: '+7 456 789 01 23',
 		availableTimes: ['9:30', '10:30', '12:30', '14:30', '17:30', '20:00'],
 		reservations: [],
 		menu: [
@@ -35,9 +39,13 @@ const defaultRestaurants = [
 		name: 'Burger House',
 		cuisine: 'Американская',
 		rating: 2.8,
-		description: 'Картошечка и Бургер.',
+		shortDescription: 'Картошечка и Бургер.',
+		fullDescription:
+			'Burger House — это место, где вы найдете самые сочные бургеры, свежую картошку фри и крафтовые напитки. Отличный выбор для любителей американской кухни!',
 		image:
 			'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
+		address: 'ул. Пушкина, 15, Грозный',
+		contact: '+7 345 678 90 12',
 		availableTimes: ['9:30', '10:30', '12:30', '14:30', '17:30', '20:00'],
 		reservations: [],
 		menu: [
@@ -65,8 +73,12 @@ const defaultRestaurants = [
 		name: 'Pasta Paradise',
 		cuisine: 'Итальянская',
 		rating: 5,
-		description: 'Вкуснейшая паста.',
+		shortDescription: 'Пицца из каменной печи.',
+		fullDescription:
+			'Pizza World предлагает настоящую итальянскую пиццу, приготовленную в каменной печи. Насладитесь разнообразием вкусов и высоким качеством ингредиентов!',
 		image: 'https://www.shkolazhizni.ru/img/content/i216/216938_or.jpg',
+		address: 'ул. Ленина, 10, Грозный',
+		contact: '+7 123 456 78 90',
 		availableTimes: ['12:30', '14:30', '17:30', '20:00'],
 		reservations: [],
 		menu: [
@@ -93,8 +105,12 @@ const defaultRestaurants = [
 		name: 'Pizza World',
 		cuisine: 'Итальянская',
 		rating: 4,
-		description: 'Пицца из каменной печи.',
+		shortDescription: 'Вкуснейшая паста.',
+		fullDescription:
+			'Pasta Paradise — это паста мечты! Мы готовим блюда по традиционным итальянским рецептам с использованием свежих и натуральных продуктов.',
 		image: 'https://dlq00ggnjruqn.cloudfront.net/prometheus/getImage?id=90588',
+		address: 'ул. Гагарина, 25, Грозный',
+		contact: '+7 234 567 89 01',
 		availableTimes: ['12:30', '14:30', '17:30', '20:00'],
 		reservations: [],
 		menu: [
