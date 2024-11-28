@@ -20,7 +20,6 @@ const Home = () => {
 	const [restaurantsWithReservations, setRestaurantsWithReservations] =
 		useState([])
 
-	// Инициализация данных из localStorage
 	useEffect(() => {
 		const savedRestaurants = loadFromLocalStorage(
 			'restaurants',
@@ -29,7 +28,6 @@ const Home = () => {
 		setRestaurantsWithReservations(savedRestaurants)
 	}, [])
 
-	// Фильтрация ресторанов
 	const filteredRestaurants = restaurantsWithReservations.filter(
 		(restaurant) =>
 			// @ts-ignore
@@ -38,7 +36,6 @@ const Home = () => {
 			restaurant.rating >= Number(filters.rating),
 	)
 
-	// Резервирование столика
 	const handleReserve = (restaurantId, selectedTime) => {
 		const updatedRestaurants = restaurantsWithReservations.map((restaurant) =>
 			// @ts-ignore
@@ -70,17 +67,14 @@ const Home = () => {
 		)
 	}
 
-	// Открытие модального окна
 	const openReservationModal = (restaurant) => {
 		setSelectedRestaurant(restaurant)
 	}
 
-	// Закрытие модального окна
 	const closeReservationModal = () => {
 		setSelectedRestaurant(null)
 	}
 
-	// Переход на страницу меню
 	const goToMenu = (restaurantId) => {
 		navigate(`/menu/${restaurantId}`)
 	}
@@ -105,12 +99,11 @@ const Home = () => {
 						restaurant={restaurant}
 						onReserve={() => openReservationModal(restaurant)}
 						// @ts-ignore
-						onViewMenu={() => goToMenu(restaurant.id)} // Кнопка перехода к меню
+						onViewMenu={() => goToMenu(restaurant.id)}
 					/>
 				))}
 			</div>
 
-			{/* Модальное окно для резервации */}
 			{selectedRestaurant && (
 				<ReservationModal
 					restaurant={selectedRestaurant}

@@ -1,5 +1,3 @@
-// src/components/ReservationModal.jsx
-
 import React from 'react'
 import { useState } from 'react'
 

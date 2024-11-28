@@ -17,7 +17,6 @@ const Filter = ({ filters, setFilters }) => {
 				))}
 			</select>
 
-			{/* Фильтр по рейтингу */}
 			<select
 				className="p-2 border rounded-md bg-neutral textPrimary focus:outline-primary"
 				value={filters.rating}
