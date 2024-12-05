@@ -4,36 +4,43 @@ import { useNavigate } from 'react-router-dom'
 const RestaurantCard = ({ restaurant, onReserve }) => {
 	const navigate = useNavigate()
 
-	const [isFullDescription, setIsFullDescription] = useState(true)
+	const [isFullDescription, setIsFullDescription] = useState(false)
 
 	const toggleDescription = () => {
 		setIsFullDescription(!isFullDescription)
 	}
 
-	return (
-		<div className="relative rounded-lg overflow-hidden shadow-lg bg-white">
-			<div
-				className="relative h-64 bg-cover bg-center"
-				style={{ backgroundImage: `url(${restaurant.image})` }}
-			>
-				<div
-					className="absolute inset-0 bg-black bg-opacity-40 z-10 cursor-pointer"
-					onClick={() => navigate(`/restaurant/${restaurant.id}`)}
-				></div>
-			</div>
+	const openYandexMaps = (address) => {
+		const baseUrl = 'https://yandex.ru/maps/?text='
+		const encodedAddress = encodeURIComponent(address)
+		window.open(`${baseUrl}${encodedAddress}`, '_blank')
+	}
 
-			<div className="p-4">
-				<h2 className="text-2xl font-semibold text-gray-800">
+	return (
+		<div className="relative group rounded-lg overflow-hidden shadow-md bg-white transition-transform transform hover:scale-102 hover:shadow-lg">
+			<div
+				className="relative h-64 bg-cover bg-center cursor-pointer"
+				style={{
+					backgroundImage: `url(${restaurant.image})`,
+				}}
+				onClick={() => window.open(restaurant.panoramaUrl, '_blank')}
+			>
+				<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent group-hover:bg-black/40 transition-all"></div>
+			</div>
+			<div className="p-6">
+				<h2 className="text-2xl font-bold text-gray-800 group-hover:text-green-600 transition-colors">
 					{restaurant.name}
 				</h2>
-				<hr className="border-green-500 border-t-2 mt-1 w-52 mb-2" />
-				<p className="text-sm text-gray-500 mb-1">{restaurant.cuisine}</p>
-				<p className="text-sm text-gray-500">⭐{restaurant.rating}</p>
-				<hr className="border-yellow-400 border-t-2 mt-1 w-12 mb-2" />
+				<p className="text-sm text-gray-500">{restaurant.cuisine}</p>
+				<p className="text-sm text-yellow-500 font-semibold">
+					⭐ {restaurant.rating}
+				</p>
+
+				<hr className="my-4 border-gray-300" />
 
 				<div
-					className={`mt-2 text-gray-700 overflow-hidden transition-all duration-500 ease-in-out max-h-96 ${
-						isFullDescription ? 'max-h-96' : 'max-h-16'
+					className={`text-gray-700 overflow-hidden transition-all duration-500 ease-in-out ${
+						isFullDescription ? 'max-h-96' : 'max-h-12'
 					}`}
 				>
 					{isFullDescription
@@ -42,32 +49,69 @@ const RestaurantCard = ({ restaurant, onReserve }) => {
 				</div>
 
 				{isFullDescription && (
-					<div className="mt-4 text-gray-600">
-						<p>
-							<strong>Адрес:</strong> {restaurant.address}
-						</p>
-						<p>
-							<strong>Контакты:</strong> {restaurant.contact}
-						</p>
-					</div>
+					<>
+						<hr className="my-4 border-gray-300" />
+						<div className="text-gray-600">
+							<p>
+								<strong>Адрес:</strong>{' '}
+								<span
+									className="text-blue-500 underline cursor-pointer hover:text-blue-700"
+									onClick={() => openYandexMaps(restaurant.address)}
+									title="Перейти на Яндекс.Карты"
+								>
+									{restaurant.address}
+								</span>
+							</p>
+							<p>
+								<strong>Контакты:</strong> {restaurant.contact}
+							</p>
+						</div>
+					</>
 				)}
 
 				<button
-					className="mt-2 text-blue-500 hover:text-blue-600"
+					className="mt-4 flex items-center text-blue-500 hover:text-blue-600 focus:outline-none"
 					onClick={toggleDescription}
 				>
-					{isFullDescription ? 'Скрыть' : 'Подробнее'}
+					<span className="mr-2">
+						<svg
+							className={`transform transition-transform ${
+								isFullDescription ? 'rotate-180' : 'rotate-0'
+							}`}
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							fill="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path d="M12 16l-6-6h12l-6 6z" />
+						</svg>
+					</span>
 				</button>
 
-				<button
-					className="mt-4 w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none transition-all duration-300"
-					onClick={(e) => {
-						e.stopPropagation()
-						onReserve()
-					}}
-				>
-					Бронь Стола
-				</button>
+				<hr className="my-4 border-gray-300" />
+
+				<div className="mt-6 flex gap-4">
+					<button
+						className="w-1/2 py-2 px-4 text-white font-semibold rounded-md bg-green-500 hover:bg-green-600 shadow-md hover:shadow-lg transition-all"
+						onClick={(e) => {
+							e.stopPropagation()
+							onReserve()
+						}}
+					>
+						Бронь Стола
+					</button>
+
+					<button
+						className="w-1/2 py-2 px-4 text-white font-semibold rounded-md bg-blue-500 hover:bg-blue-600 shadow-md hover:shadow-lg transition-all"
+						onClick={(e) => {
+							e.stopPropagation()
+							navigate(`/restaurant/${restaurant.id}`)
+						}}
+					>
+						Меню
+					</button>
+				</div>
 			</div>
 		</div>
 	)
