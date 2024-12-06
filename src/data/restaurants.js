@@ -16,6 +16,11 @@ const defaultRestaurants = [
 		contact: '+7 456 789 01 23',
 		availableTimes: ['9:30', '10:30', '12:30', '14:30', '17:30', '20:00'],
 		reservations: [],
+		tables: [
+			{ id: 1, seats: 2, availableTimes: ['9:30', '12:30', '17:30'] },
+			{ id: 2, seats: 4, availableTimes: ['10:30', '14:30', '20:00'] },
+			{ id: 3, seats: 6, availableTimes: ['9:30', '12:30', '20:00'] },
+		],
 		menu: [
 			{
 				id: 101,
@@ -50,6 +55,11 @@ const defaultRestaurants = [
 		contact: '+7 345 678 90 12',
 		availableTimes: ['9:30', '10:30', '12:30', '14:30', '17:30', '20:00'],
 		reservations: [],
+		tables: [
+			{ id: 1, seats: 2, availableTimes: ['9:30', '10:30', '12:30'] },
+			{ id: 2, seats: 4, availableTimes: ['14:30', '17:30', '20:00'] },
+			{ id: 3, seats: 6, availableTimes: ['10:30', '14:30', '20:00'] },
+		],
 		menu: [
 			{
 				id: 201,
@@ -84,6 +94,11 @@ const defaultRestaurants = [
 		contact: '+7 123 456 78 90',
 		availableTimes: ['12:30', '14:30', '17:30', '20:00'],
 		reservations: [],
+		tables: [
+			{ id: 1, seats: 2, availableTimes: ['9:30', '12:30', '17:30'] },
+			{ id: 2, seats: 4, availableTimes: ['10:30', '14:30', '20:00'] },
+			{ id: 3, seats: 6, availableTimes: ['9:30', '12:30', '20:00'] },
+		],
 		menu: [
 			{
 				id: 301,
@@ -117,6 +132,11 @@ const defaultRestaurants = [
 		contact: '+7 234 567 89 01',
 		availableTimes: ['12:30', '14:30', '17:30', '20:00'],
 		reservations: [],
+		tables: [
+			{ id: 1, seats: 2, availableTimes: ['9:30', '10:30', '12:30'] },
+			{ id: 2, seats: 4, availableTimes: ['14:30', '17:30', '20:00'] },
+			{ id: 3, seats: 6, availableTimes: ['10:30', '14:30', '20:00'] },
+		],
 		menu: [
 			{
 				id: 401,

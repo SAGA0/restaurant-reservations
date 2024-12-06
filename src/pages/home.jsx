@@ -45,7 +45,7 @@ const Home = () => {
 			)
 		},
 	)
-	const handleReserve = (restaurantId, selectedTime) => {
+	const handleReserve = (restaurantId, tableId, selectedTime) => {
 		const updatedRestaurants = restaurantsWithReservations.map((restaurant) =>
 			// @ts-ignore
 			restaurant.id === restaurantId
@@ -53,10 +53,15 @@ const Home = () => {
 						// @ts-ignore
 						...restaurant,
 						// @ts-ignore
-						reservations: [...restaurant.reservations, selectedTime],
-						// @ts-ignore
-						availableTimes: restaurant.availableTimes.filter(
-							(time) => time !== selectedTime,
+						tables: restaurant.tables.map((table) =>
+							table.id === tableId
+								? {
+										...table,
+										availableTimes: table.availableTimes.filter(
+											(time) => time !== selectedTime,
+										),
+								  }
+								: table,
 						),
 				  }
 				: restaurant,
@@ -72,7 +77,7 @@ const Home = () => {
 			(r) => r.id === restaurantId,
 		).name
 		setReservationMessage(
-			`Столик зарезервирован в ${restaurantName} на ${selectedTime}!`,
+			`Столик №${tableId} забронирован в ${restaurantName} на ${selectedTime}!`,
 		)
 	}
 
@@ -91,7 +96,7 @@ const Home = () => {
 	return (
 		<div className="p-6 bg-neutral min-h-screen">
 			<h1 className="text-3xl font-bold text-center text-textPrimary mb-6">
-				Бронирование Ресторанов
+				Бронирование в Ресторане 🛎️
 			</h1>
 
 			{/* Поле для поиска */}
